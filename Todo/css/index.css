@@ -1,0 +1,106 @@
+@charset "UTF-8";
+/* Quitar las margenes y el padding de la lista.*/
+body {
+  font-family: "Roboto", sans-serif;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%; }
+  body header {
+    height: 40%;
+    background: #283593; }
+    body header #encabezado {
+      color: white;
+      text-align: center;
+      text-transform: uppercase; }
+  body ul.mnuPrin {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #303F9F; }
+    body ul.mnuPrin li {
+      float: left; }
+      body ul.mnuPrin li a {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        transition: 0.3s;
+        font-size: 17px; }
+        body ul.mnuPrin li a:hover {
+          background-color: #3D5AFE; }
+      body ul.mnuPrin li.icon {
+        display: inline-block; }
+  body section {
+    background: #E8EAF6;
+    padding-bottom: 2.5%;
+    clear: both; }
+
+#wrapper-add-todo {
+  text-align: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #BBDEFB;
+  border-top: 1px solid #BBDEFB; }
+
+#wrapper-todo {
+  display: flex;
+  align-content: left;
+  flex-wrap: wrap; }
+  #wrapper-todo .todo-item {
+    flex-basis: 18%;
+    background: #536DFE;
+    text-align: center;
+    padding: 20px;
+    margin-top: 12px;
+    margin: 2% 2%;
+    color: black;
+    position: relative;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px; }
+    #wrapper-todo .todo-item .remove {
+      transition: opacity .5s linear;
+      text-align: right;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      color: red;
+      bottom: 0;
+      right: 0;
+      cursor: pointer;
+      background-size: 20px 20px;
+      opacity: .8; }
+      #wrapper-todo .todo-item .remove:hover {
+        opacity: 1; }
+
+@media screen and (max-width: 680px) {
+  /*Cuando la pantalla es de 680px o menos.
+    esconder la lista del menu, excepto el primero.
+    Mostrar la lista con el icono para mostrar la lista.*/
+  ul.mnuPrin li:not(:first-child) {
+    display: none; }
+  ul.mnuPrin li.icon {
+    float: right;
+    display: inline-block; }
+  h1 {
+    font-size: 2em; } }
+
+/* Se agrega la clase "responsive" al mnuPrin con JS
+cuando el usuario da click en el icono.
+Esta clase hace que el mnuPrin se vea bien en pantallas pequeñas.
+*/
+@media screen and (max-width: 680px) {
+  ul.mnuPrin.responsive {
+    position: relative; }
+    ul.mnuPrin.responsive li {
+      float: none;
+      display: inline; }
+      ul.mnuPrin.responsive li.icon {
+        position: absolute;
+        right: 0;
+        top: 0; }
+      ul.mnuPrin.responsive li a {
+        display: block;
+        text-align: left; } }

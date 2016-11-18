@@ -1,0 +1,150 @@
+$colBgBody : #E8EAF6;
+$colBgHeader: #283593;
+$colBgMnu: #303F9F;
+$colBgMnuHov: #3D5AFE;
+$colBgTodoItem: #536DFE;
+$colFontMnu : white;
+$colFont: black;
+$colRemove: red;
+$colBordTodo: #BBDEFB;
+$font-family : 'Roboto', sans-serif;
+
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+/* Quitar las margenes y el padding de la lista.*/
+body { //Fuente roboto para toda la pagina, ancho y margenes.
+  font-family: $font-family;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  
+header { //Estilo para el Header.
+  height: 40%;
+  background: $colBgHeader;
+  #encabezado{
+      color: $colFontMnu;
+      text-align: center;
+      text-transform: uppercase;
+  }
+}
+
+ul.mnuPrin {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: $colBgMnu;
+  li { //Agrupar uno al lado del otro.
+    float: left;
+    a { //Estilo de los links en la lista.
+      display: inline-block;
+      color: $colFontMnu;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 17px;
+      &:hover { //Cambiar fondo cuando tengan el mouse sobre ellos.
+        background-color: $colBgMnuHov;
+      }
+    }
+    &.icon { //Esconder el icono que se usa cuando el mnuPrin se usa en pantallas mas pequeñas.
+      display: inline-block;
+    }
+  }
+}
+
+section { //No permitir elementos a los lados de las secciones.
+  background: $colBgBody;
+  padding-bottom:2.5%;
+  clear: both;
+}
+}
+
+  #wrapper-add-todo { //Seccion contenedora del input y el boton agregar.
+  text-align: center;
+  padding: 16px 0;
+  border-bottom: 1px solid $colBordTodo;
+  border-top: 1px solid $colBordTodo;
+}
+
+#wrapper-todo { //Espacio de todas las tareas del Todo.
+  display: flex;
+  align-content: left;
+  //justify-content: space-between;
+  flex-wrap: wrap;
+  .todo-item { //Estilo para la tarea agregada al todo.
+    flex-basis: 18%;
+    background: $colBgTodoItem;
+    text-align: center;
+    padding: 20px;  
+    margin-top: 12px;
+    margin: 2% 2%;
+    color: $colFont;
+    position: relative;
+    @include border-radius(5px);
+    .remove { //Icono y estilo para el icono de eliminar tarea.
+      transition: opacity .5s linear;
+      text-align: right;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      color: $colRemove;
+      bottom:0;
+      right: 0;
+      cursor: pointer;
+      background-size: 20px 20px;
+      opacity: .8;
+      &:hover { //Cambiar transparencia del icono para eliminar.
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 680px) { 
+    /*Cuando la pantalla es de 680px o menos.
+    esconder la lista del menu, excepto el primero.
+    Mostrar la lista con el icono para mostrar la lista.*/
+  ul.mnuPrin li {
+    &:not(:first-child) {
+      display: none;
+    }
+    &.icon {
+      float: right;
+      display: inline-block;
+    }
+  }
+  h1 { //Cambiar el tamaño del titulo a 1em en pantallas.
+    font-size: 2em;
+  }
+}
+
+/* Se agrega la clase "responsive" al mnuPrin con JS
+cuando el usuario da click en el icono.
+Esta clase hace que el mnuPrin se vea bien en pantallas pequeñas.
+*/
+@media screen and (max-width: 680px) {
+  ul.mnuPrin.responsive { //Cambiar la posicion a relativa.
+    position: relative;
+    li {
+      &.icon { //Usar el icono para el mnuPrin.responsive.
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      float: none;
+      display: inline;
+      a {
+        display: block;
+        text-align: left;
+      }
+    }
+  }
+}
